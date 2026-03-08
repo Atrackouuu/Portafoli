@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohaib Azimi — Portafoli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --burgundy: #6b1f5a;
+            --burgundy-light: #8a2872;
+            --burgundy-glow: rgba(107, 31, 90, 0.4);
+            --dark: #0d0d0f;
+            --dark-2: #141418;
+            --dark-3: #1c1c22;
+            --dark-4: #242430;
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(107,31,90,0.5);
+            --text-primary: #f0edf2;
+            --text-secondary: #9d96a8;
+            --text-muted: #5e5869;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            padding: 0;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(13, 13, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--burgundy-light); }
+
+        nav ul { list-style: none; display: flex; align-items: center; gap: 4px; }
+
+        nav ul li a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.88rem;
+            padding: 7px 14px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            transition: all 0.25s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--text-primary);
+            background-color: rgba(255,255,255,0.06);
+        }
+
+        .language-selector { margin-left: 16px; position: relative; }
+
+        .language-selector select {
+            appearance: none;
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            padding: 7px 28px 7px 14px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .language-selector select:hover { border-color: var(--burgundy); color: var(--text-primary); }
+
+        .language-selector::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 10px; top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* ─── HERO ─── */
+        #inicio {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('imagen1.JPG') no-repeat center center / cover;
+            filter: brightness(0.25) saturate(0.8);
+            transform: scale(1.05);
+            transition: transform 8s ease;
+        }
+
+        #inicio:hover .hero-bg { transform: scale(1); }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(107,31,90,0.15) 0%,
+                transparent 50%,
+                rgba(13,13,15,0.6) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: heroFade 1.2s ease both;
+        }
+
+        @keyframes heroFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--burgundy-light);
+            background: rgba(107,31,90,0.12);
+            border: 1px solid rgba(107,31,90,0.3);
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            line-height: 1.05;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .hero-content h1 em {
+            font-style: italic;
+            color: var(--burgundy-light);
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 44px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--burgundy);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .hero-cta:hover {
+            background: transparent;
+            border-color: var(--burgundy-light);
+            color: var(--burgundy-light);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ─── SECTIONS ─── */
+        section { padding: 110px 0; }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--burgundy-light);
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-top: 12px;
+        }
+
+        /* ─── SOBRE MÍ ─── */
+        #sobre-mi { background: var(--dark-2); }
+
+        .sobre-mi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .sobre-mi-img {
+            position: relative;
+        }
+
+        .sobre-mi-img::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--burgundy), transparent 60%);
+            border-radius: 14px;
+            z-index: 0;
+        }
+
+        .sobre-mi-img::after {
+            content: '';
+            position: absolute;
+            bottom: -20px; right: -20px;
+            width: 60%;
+            height: 60%;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        .sobre-mi-img img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .sobre-mi-text .section-label { text-align: left; }
+
+        .sobre-mi-text h2 {
+            font-family: var(--font-display);
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 28px;
+        }
+
+        .sobre-mi-text p {
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+            margin-bottom: 18px;
+            line-height: 1.85;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--burgundy-light);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+            margin-top: 4px;
+        }
+
+        /* ─── SERVICIOS ─── */
+        #servicios { background: var(--dark); }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .servicio-card {
+            background: var(--dark-2);
+            padding: 40px 36px;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servicio-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--burgundy), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .servicio-card:hover { background: var(--dark-3); }
+        .servicio-card:hover::before { transform: scaleX(1); }
+
+        .servicio-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(107,31,90,0.12);
+            color: var(--burgundy-light);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            margin-bottom: 22px;
+            border: 1px solid rgba(107,31,90,0.2);
+            transition: all 0.3s;
+        }
+
+        .servicio-card:hover .servicio-icon {
+            background: var(--burgundy);
+            color: #fff;
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        .servicio-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .servicio-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ─── BLOG ─── */
+        #blog { background: var(--dark-2); }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 28px;
+        }
+
+        .blog-card {
+            background: var(--dark-3);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.35s ease;
+        }
+
+        .blog-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(107,31,90,0.2);
+        }
+
+        /* CV Card */
+        .cv-card {
+            display: flex;
+            flex-direction: column;
+            padding: 44px 40px;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .cv-card-top { }
+
+        .blog-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--burgundy-light);
+            background: rgba(107,31,90,0.1);
+            border: 1px solid rgba(107,31,90,0.2);
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 18px;
+        }
+
+        .cv-card h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        .blog-date {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-download {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--dark-4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+        }
+
+        .file-info { display: flex; align-items: center; gap: 16px; }
+
+        .file-icon {
+            width: 44px; height: 44px;
+            background: rgba(107,31,90,0.12);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--burgundy-light);
+        }
+
+        .file-details h4 { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
+        .file-details p { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; font-family: var(--font-mono); }
+
+        .download-btn {
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            background: var(--burgundy);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .download-btn:hover { background: var(--burgundy-light); transform: translateY(-2px); }
+
+        .blog-link {
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .blog-link:hover { color: var(--burgundy-light); gap: 12px; }
+
+        /* Meet me card */
+        .meet-card { display: flex; flex-direction: column; }
+
+        .meet-card .blog-img {
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .meet-card .blog-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .meet-card:hover .blog-img img { transform: scale(1.06); }
+
+        .meet-card .blog-content { padding: 36px 40px; }
+
+        .meet-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .meet-card .blog-date { margin-bottom: 16px; }
+
+        .meet-card .blog-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ─── CONTACTO ─── */
+        #contacto { background: var(--dark); }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .mapa {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            height: 100%;
+            min-height: 520px;
+        }
+
+        .mapa iframe { width: 100%; height: 100%; border: none; display: block; filter: grayscale(1) invert(1) brightness(0.8) contrast(0.9); }
+
+        .contacto-content {
+            background: var(--dark-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 52px;
+        }
+
+        .contacto-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-bottom: 44px;
+        }
+
+        .info-item h4 {
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--burgundy-light);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p, .info-item a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .info-item a:hover { color: var(--text-primary); }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        .form-group label {
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 13px 16px;
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--text-muted); }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--burgundy);
+            background: var(--dark-4);
+            box-shadow: 0 0 0 3px rgba(107,31,90,0.15);
+        }
+
+        .form-group textarea { resize: vertical; height: 140px; }
+
+        .btn-submit {
+            background: var(--burgundy);
+            color: #fff;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            font-family: var(--font-body);
+        }
+
+        .btn-submit:hover {
+            background: var(--burgundy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(107,31,90,0.4);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .social-links a {
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            background: var(--dark-3);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--burgundy);
+            border-color: transparent;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ─── MENU TOGGLE ─── */
+        .menu-toggle { display: none; font-size: 1.4rem; color: var(--text-primary); cursor: pointer; }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+            .sobre-mi-grid { grid-template-columns: 1fr; gap: 50px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .contacto-grid { grid-template-columns: 1fr; }
+            .mapa { min-height: 350px; }
+        }
+
+        @media (max-width: 768px) {
+            header .container { flex-wrap: wrap; height: auto; padding: 16px 0; }
+            .menu-toggle { display: block; order: 2; }
+            nav { display: none; order: 3; width: 100%; margin-top: 16px; }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 4px; }
+            nav ul li { width: 100%; }
+            nav ul li a { display: block; }
+            .language-selector { margin-left: auto; order: 2; }
+            .servicios-grid { grid-template-columns: 1fr; }
+            .contact-form { grid-template-columns: 1fr; }
+            .contacto-info { grid-template-columns: 1fr; }
+            footer .container { flex-direction: column; gap: 16px; }
+            .social-links { display: flex; }
+            .social-links a { margin: 0 5px; }
+            .contacto-content { padding: 32px 24px; }
+            .cv-card { padding: 32px 28px; }
+            .meet-card .blog-content { padding: 28px; }
+            .stats-row { grid-template-columns: 1fr; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="container">
+            <a href="#inicio" class="logo">Sohaib<span>.</span></a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio" class="active" data-translate="nav_inicio">Página de inicio</a></li>
+                    <li><a href="#sobre-mi" data-translate="nav_sobre_mi">Sobre Mi</a></li>
+                    <li><a href="#servicios" data-translate="nav_servicios">Servicios</a></li>
+                    <li><a href="#blog" data-translate="nav_blog">Blog</a></li>
+                    <li><a href="#contacto" data-translate="nav_contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <select id="language-select">
+                    <option value="ca" selected>CAT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="inicio">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-tag" data-translate="hero_tag">Portfolio Digital</div>
+            <h1 data-translate="inicio_titulo_1">Sohaib <em>Azimi</em></h1>
+            <p class="hero-subtitle" data-translate="inicio_subtitulo">Informàtica · Disseny · Sistemes</p>
+            <a href="#sobre-mi" class="hero-cta">
+                <span data-translate="hero_cta">Descobreix el meu treball</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>scroll</span>
+        </div>
+    </section>
+
+    <!-- ═══ SOBRE MÍ ═══ -->
+    <section id="sobre-mi">
+        <div class="container">
+            <div class="sobre-mi-grid">
+                <div class="sobre-mi-img fade-in">
+                    <img src="imagen3.JPG" alt="Sohaib Azimi">
+                </div>
+                <div class="sobre-mi-text fade-in">
+                    <p class="section-label" data-translate="sobre_label">Qui soc</p>
+                    <h2 data-translate="sobre_mi_titulo">Sobre el lloc web</h2>
+                    <p data-translate="sobre_mi_texto1">Benvingut a "Sohaib Azimi", un espai dedicat a destacar el meu portafoli de projectes en l'àmbit de la informàtica.</p>
+                    <p data-translate="sobre_mi_texto2">Aquí hi trobarà exemples de la meva feina i les meves habilitats en el sector. Gràcies per visitar la meva plataforma.</p>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <span class="stat-number">9+</span>
+                            <span class="stat-label" data-translate="stat_1">Serveis</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label" data-translate="stat_2">Curiositat</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label" data-translate="stat_3">Dedicació</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SERVICIOS ═══ -->
+    <section id="servicios">
+        <div class="container">
+            <div class="section-title fade-in">
+                <p class="section-label" data-translate="servicios_label">Àrees d'expertise</p>
+                <h2 data-translate="servicios_titulo">Servicios</h2>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-pencil-ruler"></i></div>
+                    <h3 data-translate="servicio_1_titulo">Disseny Gràfic Personalitzat</h3>
+                    <p data-translate="servicio_1_desc">Creem dissenys que capturen l'essència del teu projecte.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-code"></i></div>
+                    <h3 data-translate="servicio_2_titulo">Desenvolupament Web Innovador</h3>
+                    <p data-translate="servicio_2_desc">Transformem les teves idees en experiències digitals atractives.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fab fa-python"></i></div>
+                    <h3 data-translate="servicio_3_titulo">Projectes Python a mida</h3>
+                    <p data-translate="servicio_3_desc">Desenvolupem aplicacions adaptades a les teves necessitats.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3 data-translate="servicio_4_titulo">Gestió Intel·ligent de Xarxes</h3>
+                    <p data-translate="servicio_4_desc">Optimitzem i mantenim la teva infraestructura de xarxa.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-server"></i></div>
+                    <h3 data-translate="servicio_5_titulo">Administració de Servidors Eficaç</h3>
+                    <p data-translate="servicio_5_desc">Assegurem rendiment, seguretat i estabilitat en tot moment.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-database"></i></div>
+                    <h3 data-translate="servicio_6_titulo">Bases de Dades Fiables</h3>
+                    <p data-translate="servicio_6_desc">Administrem la teva informació perquè el teu negoci funcioni sense interrupcions.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-headset"></i></div>
+                    <h3 data-translate="servicio_7_titulo">Suport Tècnic</h3>
+                    <p data-translate="servicio_7_desc">Oferim serveis especialitzats en suport tècnic per resoldre qualsevol inconvenient.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3 data-translate="servicio_8_titulo">Consultoria en Informàtica</h3>
+                    <p data-translate="servicio_8_desc">Assessorament expert en estratègies tecnològiques per optimitzar processos.</p>
+                </div>
+                <div class="servicio-card fade-in">
+                    <div class="servicio-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3 data-translate="servicio_9_titulo">Consultoria en TI</h3>
+                    <p data-translate="servicio_9_desc">Assessorament professional en diverses àrees de tecnologia de la informació.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BLOG ═══ -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-title fade-in">
+                <p class="section-label" data-translate="blog_label">Contingut</p>
+                <h2 data-translate="blog_titulo">Blog</h2>
+            </div>
+            <div class="blog-grid">
+                <!-- CV Card -->
+                <div class="blog-card cv-card fade-in">
+                    <div class="cv-card-top">
+                        <div class="blog-tag" data-translate="cv_tag">Document</div>
+                        <h3 data-translate="blog_1_titulo">Curriculum Vitae</h3>
+                        <div class="blog-date"><i class="far fa-calendar-alt"></i> <span data-translate="blog_1_fecha">05/10/2025</span></div>
+                    </div>
+                    <div class="file-download">
+                        <div class="file-info">
+                            <div class="file-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="file-details">
+                                <h4 data-translate="blog_1_archivo_nombre">Descargar archivo</h4>
+                                <p>PDF · 198 KB</p>
+                            </div>
+                        </div>
+                        <a href="CV_Sohaib_Azimi.pdf" download="CV_Sohaib_Azimi.pdf" class="download-btn" target="_blank"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+
+                <!-- Meet me card -->
+                <div class="blog-card meet-card fade-in">
+                    <div class="blog-img">
+                        <img src="imagen2.JPG" alt="Coneix-me">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tag" data-translate="blog2_tag">Personal</div>
+                        <h3 data-translate="blog_2_titulo">Coneix-me</h3>
+                        <div class="blog-date"><i class="far fa-calendar-alt"></i> <span data-translate="blog_2_fecha">05/10/2025</span></div>
+                        <p class="blog-desc" data-translate="blog_2_desc">Soc Sohaib Azimi, un jove apassionat per la informàtica i la tecnologia. Actualment cursant un Grau Superior en Administració de Sistemes Informàtics en Xarxa...</p>
+                        <a href="about.html" class="blog-link"><span data-translate="leer_mas">Més informació</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACTO ═══ -->
+    <section id="contacto">
+        <div class="container">
+            <div class="section-title fade-in">
+                <p class="section-label" data-translate="contacto_label">Parlem</p>
+                <h2 data-translate="contacto_titulo">Contacto</h2>
+            </div>
+            <div class="contacto-grid">
+                <div class="mapa fade-in">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.861096217466!2d1.723478315422611!3d41.22353097927945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a3879064829927%3A0x400f06151047120!2sVilanova%20i%20la%20Geltr%C3%BA%2C%20Barcelona%2C%20Espa%C3%b1a!5e0!3m2!1ses!2sus!4v1677157838321!5m2!1ses!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="contacto-content fade-in">
+                    <div class="contacto-info">
+                        <div class="info-item">
+                            <h4 data-translate="contacto_email_titulo"><i class="fas fa-envelope"></i> Email</h4>
+                            <p><a href="mailto:sohaibazimi77@gmail.com">sohaibazimi77@gmail.com</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h4 data-translate="contacto_telefono_titulo"><i class="fas fa-phone-alt"></i> Telèfon</h4>
+                            <p><a href="tel:+34602832033">+34 602 832 033</a></p>
+                        </div>
+                        <div class="info-item" style="grid-column: 1/-1;">
+                            <h4 data-translate="contacto_direccion_titulo"><i class="fas fa-map-marker-alt"></i> Adreça</h4>
+                            <p data-translate="contacto_direccion">Vilanova i la Geltrú, España</p>
+                        </div>
+                    </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-translate="footer_copyright">Copyright © 2026 Sohaib Azimi. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/sohaib-azimi-el-haouti-75ab21345/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // Mobile menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => {
+                if (pageYOffset >= s.offsetTop - 150) current = s.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) link.classList.add('active');
+            });
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ═══ TRANSLATIONS ═══
+        const translations = {
+            ca: {
+                nav_inicio: "Inici",
+                nav_sobre_mi: "Sobre Mi",
+                nav_servicios: "Serveis",
+                nav_blog: "Blog",
+                nav_contacto: "Contacte",
+                hero_tag: "Portafoli Digital",
+                inicio_titulo_1: "Sohaib Azimi",
+                inicio_subtitulo: "Informàtica · Disseny · Sistemes",
+                hero_cta: "Descobreix el meu treball",
+                sobre_label: "Qui soc",
+                sobre_mi_titulo: "Sobre el lloc web",
+                sobre_mi_texto1: "Benvingut a \"Sohaib Azimi\", un espai dedicat a destacar el meu portafoli de projectes en l'àmbit de la informàtica.",
+                sobre_mi_texto2: "Aquí hi trobarà exemples de la meva feina i les meves habilitats en el sector. Gràcies per visitar la meva plataforma.",
+                stat_1: "Serveis",
+                stat_2: "Curiositat",
+                stat_3: "Dedicació",
+                servicios_label: "Àrees d'expertise",
+                servicios_titulo: "Serveis",
+                servicio_1_titulo: "Disseny Gràfic Personalitzat",
+                servicio_1_desc: "Creem dissenys que capturen l'essència del teu projecte.",
+                servicio_2_titulo: "Desenvolupament Web Innovador",
+                servicio_2_desc: "Transformem les teves idees en experiències digitals atractives.",
+                servicio_3_titulo: "Projectes Python a mida",
+                servicio_3_desc: "Desenvolupem aplicacions adaptades a les teves necessitats.",
+                servicio_4_titulo: "Gestió Intel·ligent de Xarxes",
+                servicio_4_desc: "Optimitzem i mantenim la teva infraestructura de xarxa.",
+                servicio_5_titulo: "Administració de Servidors Eficaç",
+                servicio_5_desc: "Assegurem rendiment, seguretat i estabilitat en tot moment.",
+                servicio_6_titulo: "Bases de Dades Fiables",
+                servicio_6_desc: "Administrem la teva informació perquè el teu negoci funcioni sense interrupcions.",
+                servicio_7_titulo: "Suport Tècnic",
+                servicio_7_desc: "Oferim serveis especialitzats en suport tècnic per resoldre qualsevol inconvenient.",
+                servicio_8_titulo: "Consultoria en Informàtica",
+                servicio_8_desc: "Assessorament expert en estratègies tecnològiques per optimitzar processos.",
+                servicio_9_titulo: "Consultoria en TI",
+                servicio_9_desc: "Assessorament professional en diverses àrees de tecnologia de la informació.",
+                blog_label: "Contingut",
+                blog_titulo: "Blog",
+                cv_tag: "Document",
+                blog2_tag: "Personal",
+                blog_1_titulo: "Curriculum Vitae",
+                blog_1_fecha: "05/10/2025",
+                blog_1_archivo_nombre: "Descarregar fitxer",
+                blog_2_titulo: "Coneix-me",
+                blog_2_fecha: "05/10/2025",
+                blog_2_desc: "Soc Sohaib Azimi, un jove apassionat per la informàtica i la tecnologia. Actualment cursant un Grau Superior en Administració de Sistemes Informàtics en Xarxa...",
+                leer_mas: "Més informació",
+                contacto_label: "Parlem",
+                contacto_titulo: "Contacte",
+                contacto_email_titulo: "Email",
+                contacto_telefono_titulo: "Telèfon",
+                contacto_direccion_titulo: "Adreça",
+                contacto_direccion: "Vilanova i la Geltrú, Espanya",
+                form_nombre: "Nom",
+                form_telefono: "Telèfon",
+                form_email: "Correu electrònic",
+                form_mensaje: "Missatge",
+                form_boton: "Enviar missatge",
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. Tots els drets reservats."
+            },
+            es: {
+                nav_inicio: "Inicio",
+                nav_sobre_mi: "Sobre Mí",
+                nav_servicios: "Servicios",
+                nav_blog: "Blog",
+                nav_contacto: "Contacto",
+                hero_tag: "Portafolio Digital",
+                inicio_titulo_1: "Sohaib Azimi",
+                inicio_subtitulo: "Informática · Diseño · Sistemas",
+                hero_cta: "Descubre mi trabajo",
+                sobre_label: "Quién soy",
+                sobre_mi_titulo: "Sobre el sitio web",
+                sobre_mi_texto1: "Bienvenido a \"Sohaib Azimi\", un espacio dedicado a destacar mi portafolio de proyectos en el ámbito de la informática.",
+                sobre_mi_texto2: "Aquí encontrará ejemplos de mi trabajo y mis habilidades en el sector. Gracias por visitar mi plataforma.",
+                stat_1: "Servicios",
+                stat_2: "Curiosidad",
+                stat_3: "Dedicación",
+                servicios_label: "Áreas de expertise",
+                servicios_titulo: "Servicios",
+                servicio_1_titulo: "Diseño Gráfico Personalizado",
+                servicio_1_desc: "Creamos diseños que capturan la esencia de tu proyecto.",
+                servicio_2_titulo: "Desarrollo Web Innovador",
+                servicio_2_desc: "Transformamos tus ideas en experiencias digitales atractivas.",
+                servicio_3_titulo: "Proyectos Python a medida",
+                servicio_3_desc: "Desarrollamos aplicaciones adaptadas a tus necesidades.",
+                servicio_4_titulo: "Gestión Inteligente de Redes",
+                servicio_4_desc: "Optimizamos y mantenemos tu infraestructura de red.",
+                servicio_5_titulo: "Administración de Servidores Eficaz",
+                servicio_5_desc: "Aseguramos rendimiento, seguridad y estabilidad en todo momento.",
+                servicio_6_titulo: "Bases de Datos Fiables",
+                servicio_6_desc: "Administramos tu información para que tu negocio funcione sin interrupciones.",
+                servicio_7_titulo: "Soporte Técnico",
+                servicio_7_desc: "Ofrecemos servicios especializados en soporte técnico.",
+                servicio_8_titulo: "Consultoría en Informática",
+                servicio_8_desc: "Asesoramiento experto en estrategias tecnológicas.",
+                servicio_9_titulo: "Consultoría en TI",
+                servicio_9_desc: "Asesoramiento profesional en diversas áreas de TI.",
+                blog_label: "Contenido",
+                blog_titulo: "Blog",
+                cv_tag: "Documento",
+                blog2_tag: "Personal",
+                blog_1_titulo: "Curriculum Vitae",
+                blog_1_fecha: "05/10/2025",
+                blog_1_archivo_nombre: "Descargar archivo",
+                blog_2_titulo: "Conóceme",
+                blog_2_fecha: "05/10/2025",
+                blog_2_desc: "Soy Sohaib Azimi, un joven apasionado por la informática y la tecnología. Actualmente cursando un Grado Superior en Administración de Sistemas Informáticos en Red...",
+                leer_mas: "Más información",
+                contacto_label: "Hablemos",
+                contacto_titulo: "Contacto",
+                contacto_email_titulo: "Email",
+                contacto_telefono_titulo: "Teléfono",
+                contacto_direccion_titulo: "Dirección",
+                contacto_direccion: "Vilanova i la Geltrú, España",
+                form_nombre: "Nombre",
+                form_telefono: "Teléfono",
+                form_email: "Correo electrónico",
+                form_mensaje: "Mensaje",
+                form_boton: "Enviar mensaje",
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. Todos los derechos reservados."
+            },
+            en: {
+                nav_inicio: "Home",
+                nav_sobre_mi: "About Me",
+                nav_servicios: "Services",
+                nav_blog: "Blog",
+                nav_contacto: "Contact",
+                hero_tag: "Digital Portfolio",
+                inicio_titulo_1: "Sohaib Azimi",
+                inicio_subtitulo: "Computing · Design · Systems",
+                hero_cta: "Discover my work",
+                sobre_label: "Who I am",
+                sobre_mi_titulo: "About the website",
+                sobre_mi_texto1: "Welcome to \"Sohaib Azimi\", a space dedicated to highlighting my portfolio of projects in the field of computer science.",
+                sobre_mi_texto2: "Here you will find examples of my work and my skills in the sector. Thank you for visiting my platform.",
+                stat_1: "Services",
+                stat_2: "Curiosity",
+                stat_3: "Dedication",
+                servicios_label: "Areas of expertise",
+                servicios_titulo: "Services",
+                servicio_1_titulo: "Custom Graphic Design",
+                servicio_1_desc: "We create designs that capture the essence of your project.",
+                servicio_2_titulo: "Innovative Web Development",
+                servicio_2_desc: "We transform your ideas into attractive digital experiences.",
+                servicio_3_titulo: "Custom Python Projects",
+                servicio_3_desc: "We develop applications adapted to your needs.",
+                servicio_4_titulo: "Intelligent Network Management",
+                servicio_4_desc: "We optimize and maintain your network infrastructure.",
+                servicio_5_titulo: "Effective Server Administration",
+                servicio_5_desc: "We ensure performance, security, and stability at all times.",
+                servicio_6_titulo: "Reliable Databases",
+                servicio_6_desc: "We manage your information so your business runs without interruptions.",
+                servicio_7_titulo: "Technical Support",
+                servicio_7_desc: "We offer specialized technical support services.",
+                servicio_8_titulo: "IT Consulting",
+                servicio_8_desc: "Expert advice on technological strategies.",
+                servicio_9_titulo: "IT Consultancy",
+                servicio_9_desc: "Professional advice in various areas of information technology.",
+                blog_label: "Content",
+                blog_titulo: "Blog",
+                cv_tag: "Document",
+                blog2_tag: "Personal",
+                blog_1_titulo: "Curriculum Vitae",
+                blog_1_fecha: "10/05/2025",
+                blog_1_archivo_nombre: "Download file",
+                blog_2_titulo: "Get to know me",
+                blog_2_fecha: "10/05/2025",
+                blog_2_desc: "I am Sohaib Azimi, a young person passionate about computing and technology. Currently studying a Higher Degree in Administration of Network Computer Systems...",
+                leer_mas: "More information",
+                contacto_label: "Let's talk",
+                contacto_titulo: "Contact",
+                contacto_email_titulo: "Email",
+                contacto_telefono_titulo: "Phone",
+                contacto_direccion_titulo: "Address",
+                contacto_direccion: "Vilanova i la Geltrú, Spain",
+                form_nombre: "Name",
+                form_telefono: "Phone",
+                form_email: "Email",
+                form_mensaje: "Message",
+                form_boton: "Send message",
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. All rights reserved."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang]?.[key]) el.textContent = translations[lang][key];
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        const langSelect = document.getElementById('language-select');
+        langSelect.addEventListener('change', e => changeLanguage(e.target.value));
+
+        const saved = localStorage.getItem('preferredLanguage');
+        if (saved && translations[saved]) {
+            langSelect.value = saved;
+            changeLanguage(saved);
+        } else {
+            changeLanguage('ca');
+        }
+    });
+    </script>
+</body>
+</html>

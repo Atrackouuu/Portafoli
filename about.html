@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohaib Azimi — Sobre mi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ─── VARIABLES I ESTILS BASE (Idèntics a l'index) ─── */
+        :root {
+            --burgundy: #6b1f5a;
+            --burgundy-light: #8a2872;
+            --dark: #0d0d0f;
+            --dark-2: #141418;
+            --dark-3: #1c1c22;
+            --border: rgba(255,255,255,0.07);
+            --text-primary: #f0edf2;
+            --text-secondary: #9d96a8;
+            --text-muted: #5e5869;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            padding: 0;
+            transition: all 0.4s ease;
+            background: rgba(13, 13, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; }
+        .logo span { color: var(--burgundy-light); }
+        
+        nav ul { list-style: none; display: flex; align-items: center; gap: 4px; }
+        nav ul li a {
+            color: var(--text-secondary); font-weight: 500; font-size: 0.88rem;
+            padding: 7px 14px; border-radius: 6px; letter-spacing: 0.3px; transition: all 0.25s ease;
+        }
+        nav ul li a:hover { color: var(--text-primary); background-color: rgba(255,255,255,0.06); }
+
+        .language-selector { margin-left: 16px; position: relative; }
+        .language-selector select {
+            appearance: none; background: var(--dark-3); border: 1px solid var(--border);
+            padding: 7px 28px 7px 14px; border-radius: 8px; font-family: var(--font-mono);
+            font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; outline: none; transition: all 0.3s;
+        }
+        .language-selector select:hover { border-color: var(--burgundy); color: var(--text-primary); }
+        .language-selector::after {
+            content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            font-size: 0.65rem; color: var(--text-muted); pointer-events: none;
+        }
+
+        /* ─── PÀGINA SOBRE MI (Nou disseny) ─── */
+        .about-page-wrapper {
+            padding: 160px 0 100px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 40px;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            color: var(--burgundy-light);
+            transform: translateX(-5px);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr; /* Text esquerra, Imatge dreta */
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .about-text h1 em {
+            font-style: italic;
+            color: var(--burgundy-light);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .about-img-container {
+            position: relative;
+        }
+
+        .about-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, transparent 40%, var(--burgundy));
+            border-radius: 14px;
+            z-index: 0;
+        }
+
+        .about-img-container::after {
+            content: '';
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 60%;
+            height: 60%;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        .about-img-container img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark-2);
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+        }
+        footer .container { display: flex; justify-content: space-between; align-items: center; }
+        footer p { font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono); }
+        .social-links a {
+            width: 38px; height: 38px; border-radius: 8px; background: var(--dark-3);
+            border: 1px solid var(--border); color: var(--text-secondary); display: inline-flex;
+            align-items: center; justify-content: center; margin-left: 10px; font-size: 0.95rem; transition: all 0.3s;
+        }
+        .social-links a:hover { background: var(--burgundy); border-color: transparent; color: #fff; transform: translateY(-2px); }
+
+        /* ─── RESPONSIVE ─── */
+        .menu-toggle { display: none; font-size: 1.4rem; color: var(--text-primary); cursor: pointer; }
+
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; gap: 50px; }
+            .about-img-container { order: -1; max-width: 450px; margin: 0 auto; } /* Imatge a dalt en mòbil */
+        }
+        @media (max-width: 768px) {
+            header .container { flex-wrap: wrap; height: auto; padding: 16px 0; }
+            .menu-toggle { display: block; order: 2; }
+            nav { display: none; order: 3; width: 100%; margin-top: 16px; }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 4px; }
+            nav ul li { width: 100%; }
+            nav ul li a { display: block; }
+            .language-selector { margin-left: auto; order: 2; }
+            footer .container { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Sohaib<span>.</span></a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#inicio" data-translate="nav_inicio">Página de inicio</a></li>
+                    <li><a href="index.html#sobre-mi" data-translate="nav_sobre_mi">Sobre Mi</a></li>
+                    <li><a href="index.html#servicios" data-translate="nav_servicios">Servicios</a></li>
+                    <li><a href="index.html#blog" data-translate="nav_blog">Blog</a></li>
+                    <li><a href="index.html#contacto" data-translate="nav_contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <select id="language-select">
+                    <option value="ca">CAT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-page-wrapper">
+        <div class="container">
+            <a href="index.html#blog" class="btn-back">
+                <i class="fas fa-arrow-left"></i> <span data-translate="back_btn">Tornar enrere</span>
+            </a>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <h1 data-translate="about_title">Molt més que <em>codi</em></h1>
+                    
+                    <p data-translate="about_p1">Hola! Soc Sohaib Azimi. La meva passió per la tecnologia va començar quan era petit, desmuntant ordinadors per entendre com funcionaven per dins. Avui dia, aquesta curiositat s'ha convertit en la meva professió i el meu estil de vida.</p>
+                    
+                    <p data-translate="about_p2">Actualment estic cursant el Grau Superior en Administració de Sistemes Informàtics en Xarxa (ASIX) a l'Institut Joaquim Mir. La meva formació em permet tenir una visió global de la tecnologia: des de l'arquitectura de servidors i el manteniment de xarxes, fins al disseny d'interfícies web modernes.</p>
+                    
+                    <p data-translate="about_p3">Em considero una persona resolutiva, autodidacta i sempre disposada a afrontar nous reptes. Més enllà de l'aspecte tècnic, crec fermament en el poder del disseny i la usabilitat. Un bon sistema no només ha de ser segur i ràpid, sinó també intuïtiu i agradable per a l'usuari final.</p>
+                    
+                    <p data-translate="about_p4">Quan no estic escrivint línies de codi o configurant servidors, m'agrada investigar sobre ciberseguretat, aprendre nous llenguatges de programació com Python, o simplement gaudir d'un bon cafè mentre llegeixo sobre les últimes tendències en disseny UX/UI.</p>
+                </div>
+                
+                <div class="about-img-container">
+                    <img src="imagen4.JPG" alt="Sohaib Azimi">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-translate="footer_copyright">Copyright © 2026 Sohaib Azimi. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/sohaib-azimi-el-haouti-75ab21345/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Menú Mòbil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+        }
+
+        // Sistema de Traduccions (Sincronitzat amb l'index mitjançant localStorage)
+        const translations = {
+            ca: {
+                nav_inicio: "Inici", nav_sobre_mi: "Sobre Mi", nav_servicios: "Serveis", nav_blog: "Blog", nav_contacto: "Contacte",
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. Tots els drets reservats.",
+                back_btn: "Tornar enrere",
+                about_title: "Molt més que <em>codi</em>",
+                about_p1: "Hola! Soc Sohaib Azimi. La meva passió per la tecnologia va començar quan era petit, desmuntant ordinadors per entendre com funcionaven per dins. Avui dia, aquesta curiositat s'ha convertit en la meva professió i el meu estil de vida.",
+                about_p2: "Actualment estic cursant el Grau Superior en Administració de Sistemes Informàtics en Xarxa (ASIX) a l'Institut Joaquim Mir. La meva formació em permet tenir una visió global de la tecnologia: des de l'arquitectura de servidors i el manteniment de xarxes, fins al disseny d'interfícies web modernes.",
+                about_p3: "Em considero una persona resolutiva, autodidacta i sempre disposada a afrontar nous reptes. Més enllà de l'aspecte tècnic, crec fermament en el poder del disseny i la usabilitat. Un bon sistema no només ha de ser segur i ràpid, sinó també intuïtiu i agradable per a l'usuari final.",
+                about_p4: "Quan no estic escrivint línies de codi o configurant servidors, m'agrada investigar sobre ciberseguretat, aprendre nous llenguatges de programació com Python, o simplement gaudir d'un bon cafè mentre llegeixo sobre les últimes tendències en disseny UX/UI."
+            },
+            es: {
+                nav_inicio: "Inicio", nav_sobre_mi: "Sobre Mí", nav_servicios: "Servicios", nav_blog: "Blog", nav_contacto: "Contacto",
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. Todos los derechos reservados.",
+                back_btn: "Volver atrás",
+                about_title: "Mucho más que <em>código</em>",
+                about_p1: "¡Hola! Soy Sohaib Azimi. Mi pasión por la tecnología empezó cuando era pequeño, desmontando ordenadores para entender cómo funcionaban por dentro. Hoy en día, esta curiosidad se ha convertido en mi profesión y mi estilo de vida.",
+                about_p2: "Actualmente estoy cursando el Grado Superior en Administración de Sistemas Informáticos en Red (ASIX) en el Instituto Joaquim Mir. Mi formación me permite tener una visión global de la tecnología: desde la arquitectura de servidores y mantenimiento de redes, hasta el diseño de interfaces web modernas.",
+                about_p3: "Me considero una persona resolutiva, autodidacta y siempre dispuesta a afrontar nuevos retos. Más allá del aspecto técnico, creo firmemente en el poder del diseño y la usabilidad. Un buen sistema no solo debe ser seguro y rápido, sino también intuitivo y agradable para el usuario final.",
+                about_p4: "Cuando no estoy escribiendo líneas de código o configurando servidores, me gusta investigar sobre ciberseguridad, aprender nuevos lenguajes de programación como Python, o simplemente disfrutar de un buen café mientras leo sobre las últimas tendencias en diseño UX/UI."
+            },
+            en: {
+                nav_inicio: "Home", nav_sobre_mi: "About Me", nav_servicios: "Services", nav_blog: "Blog", nav_contacto: "Contact",
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. All rights reserved.",
+                back_btn: "Go back",
+                about_title: "Much more than <em>code</em>",
+                about_p1: "Hello! I am Sohaib Azimi. My passion for technology began when I was a child, taking apart computers to understand how they worked inside. Today, this curiosity has become my profession and lifestyle.",
+                about_p2: "I am currently studying a Higher Degree in Network Computer Systems Administration (ASIX) at the Joaquim Mir Institute. My training allows me to have a global vision of technology: from server architecture and network maintenance to designing modern web interfaces.",
+                about_p3: "I consider myself a decisive, self-taught person always ready to face new challenges. Beyond the technical aspect, I firmly believe in the power of design and usability. A good system must not only be secure and fast but also intuitive and pleasant for the end user.",
+                about_p4: "When I'm not writing lines of code or configuring servers, I like to research cybersecurity, learn new programming languages like Python, or simply enjoy a good coffee while reading about the latest trends in UX/UI design."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang]?.[key]) {
+                    if (el.tagName.toLowerCase() === 'h1') {
+                        el.innerHTML = translations[lang][key]; // Permet carregar l'etiqueta <em>
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        const langSelect = document.getElementById('language-select');
+        langSelect.addEventListener('change', e => changeLanguage(e.target.value));
+
+        const saved = localStorage.getItem('preferredLanguage');
+        if (saved && translations[saved]) {
+            langSelect.value = saved;
+            changeLanguage(saved);
+        } else {
+            changeLanguage('ca');
+        }
+    });
+    </script>
+</body>
+</html>
