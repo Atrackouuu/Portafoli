@@ -7,6 +7,67 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ─── NUEVOS ESTILOS BLOG IZQUIERDA ─── */
+        .blog-left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .proyectos-card, .cv-card {
+            display: flex;
+            flex-direction: column;
+            padding: 32px 30px; 
+            justify-content: space-between;
+            gap: 20px;
+            flex: 1; 
+        }
+
+        .proyectos-links {
+            display: flex;
+            gap: 16px; /* Ajustado para que no haya tanto hueco en medio */
+            width: 100%; /* Aseguramos que el contenedor use todo el ancho */
+        }
+
+        /* Estilos para los botones de la tarjeta proyectos */
+        .btn-github, .btn-drive {
+            flex: 1; /* Esto obliga a que los dos botones midan exactamente lo mismo */
+            display: flex;
+            justify-content: center; /* Centra el contenido (icono y texto) horizontalmente */
+            align-items: center; /* Centra el contenido verticalmente */
+            padding: 12px 0; /* Un relleno vertical normal (arriba y abajo) */
+            gap: 10px; /* Separación entre el icono y el texto */
+            font-family: var(--font-body);
+            font-weight: 500;
+            border-radius: 8px; /* Mismo redondeo que tus otros botones */
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Le damos el estilo de tu tema al botón de GitHub */
+        .btn-github {
+            background: var(--burgundy);
+            color: #fff;
+            border: 1px solid transparent;
+        }
+
+        .btn-github:hover {
+            background: var(--burgundy-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-drive {
+            background: var(--dark-4);
+            border: 1px solid var(--border); /* Corregido: de 33px a 1px */
+            color: var(--text-primary);
+        }
+
+        .btn-drive:hover {
+            background: var(--dark-3);
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
         :root {
             --burgundy: #6b1f5a;
             --burgundy-light: #8a2872;
@@ -856,7 +917,7 @@
         <div class="container">
             <div class="sobre-mi-grid">
                 <div class="sobre-mi-img fade-in">
-                    <img src="imagen3.jpg" alt="Sohaib Azimi">
+                    <img src="imagen3.JPG" alt="Sohaib Azimi">
                 </div>
                 <div class="sobre-mi-text fade-in">
                     <p class="section-label" data-translate="sobre_label">Qui soc</p>
@@ -947,26 +1008,45 @@
                 <h2 data-translate="blog_titulo">Blog</h2>
             </div>
             <div class="blog-grid">
-                <!-- CV Card -->
-                <div class="blog-card cv-card fade-in">
-                    <div class="cv-card-top">
-                        <div class="blog-tag" data-translate="cv_tag">Document</div>
-                        <h3 data-translate="blog_1_titulo">Curriculum Vitae</h3>
-                        <div class="blog-date"><i class="far fa-calendar-alt"></i> <span data-translate="blog_1_fecha">05/10/2025</span></div>
-                    </div>
-                    <div class="file-download">
-                        <div class="file-info">
-                            <div class="file-icon"><i class="fas fa-file-pdf"></i></div>
-                            <div class="file-details">
-                                <h4 data-translate="blog_1_archivo_nombre">Descargar archivo</h4>
-                                <p>PDF · 198 KB</p>
-                            </div>
+                
+                <div class="blog-left-col">
+                    
+                    <div class="blog-card proyectos-card fade-in">
+                        <div class="cv-card-top">
+                            <div class="blog-tag" data-translate="proyectos_tag">Portafoli</div>
+                            <h3 data-translate="proyectos_titulo">Projectes</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 12px; line-height: 1.6;" data-translate="proyectos_desc">Aquí aniré afegint els meus projectes.</p>
                         </div>
-                        <a href="CV_Sohaib_Azimi.pdf" download="CV_Sohaib_Azimi.pdf" class="download-btn" target="_blank"><i class="fas fa-download"></i></a>
+                        <div class="proyectos-links">
+                            <a href="https://github.com/Atrackouuu" target="_blank" class="download-btn btn-github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://drive.google.com/drive/folders/1sEB5nZSVzOoZzFqXea2AE_b4AdWXcNRE?usp=sharing" target="_blank" class="download-btn btn-drive">
+                                <i class="fab fa-google-drive"></i> Drive
+                            </a>
+                        </div>
                     </div>
+
+                    <div class="blog-card cv-card fade-in">
+                        <div class="cv-card-top">
+                            <div class="blog-tag" data-translate="cv_tag">Document</div>
+                            <h3 data-translate="blog_1_titulo">Curriculum Vitae</h3>
+                            <div class="blog-date"><i class="far fa-calendar-alt"></i> <span data-translate="blog_1_fecha">05/10/2025</span></div>
+                        </div>
+                        <div class="file-download">
+                            <div class="file-info">
+                                <div class="file-icon"><i class="fas fa-file-pdf"></i></div>
+                                <div class="file-details">
+                                    <h4 data-translate="blog_1_archivo_nombre">Descarregar fitxer</h4>
+                                    <p>PDF · 198 KB</p>
+                                </div>
+                            </div>
+                            <a href="CV_Sohaib_Azimi.pdf" download="CV_Sohaib_Azimi.pdf" class="download-btn" target="_blank"><i class="fas fa-download"></i></a>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Meet me card -->
                 <div class="blog-card meet-card fade-in">
                     <div class="blog-img">
                         <img src="imagen2.JPG" alt="Coneix-me">
@@ -979,6 +1059,7 @@
                         <a href="about.html" class="blog-link"><span data-translate="leer_mas">Més informació</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -999,6 +1080,10 @@
                         <div class="info-item">
                             <h4 data-translate="contacto_email_titulo"><i class="fas fa-envelope"></i> Email</h4>
                             <p><a href="mailto:sohaibazimi77@gmail.com">sohaibazimi77@gmail.com</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h4 data-translate="contacto_telefono_titulo"><i class="fas fa-phone-alt"></i> Telèfon</h4>
+                            <p><a href="tel:+34602832033">+34 602 832 033</a></p>
                         </div>
                         <div class="info-item" style="grid-column: 1/-1;">
                             <h4 data-translate="contacto_direccion_titulo"><i class="fas fa-map-marker-alt"></i> Adreça</h4>
@@ -1124,7 +1209,10 @@
                 form_email: "Correu electrònic",
                 form_mensaje: "Missatge",
                 form_boton: "Enviar missatge",
-                footer_copyright: "Copyright © 2026 Sohaib Azimi. Tots els drets reservats."
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. Tots els drets reservats.", /* <--- Coma añadida aquí */
+                proyectos_tag: "Portafoli",
+                proyectos_titulo: "Projectes",
+                proyectos_desc: "Aquí aniré afegint els meus projectes."
             },
             es: {
                 nav_inicio: "Inicio",
@@ -1185,7 +1273,10 @@
                 form_email: "Correo electrónico",
                 form_mensaje: "Mensaje",
                 form_boton: "Enviar mensaje",
-                footer_copyright: "Copyright © 2026 Sohaib Azimi. Todos los derechos reservados."
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. Todos los derechos reservados.", /* <--- Coma añadida aquí */
+                proyectos_tag: "Portafolio",
+                proyectos_titulo: "Proyectos",
+                proyectos_desc: "Aquí iré añadiendo mis proyectos."
             },
             en: {
                 nav_inicio: "Home",
@@ -1246,9 +1337,13 @@
                 form_email: "Email",
                 form_mensaje: "Message",
                 form_boton: "Send message",
-                footer_copyright: "Copyright © 2026 Sohaib Azimi. All rights reserved."
+                footer_copyright: "Copyright © 2026 Sohaib Azimi. All rights reserved.", /* <--- Coma añadida aquí */
+                proyectos_tag: "Portfolio",
+                proyectos_titulo: "Projects",
+                proyectos_desc: "Here I will be adding my projects."
             }
         };
+
 
         function changeLanguage(lang) {
             document.querySelectorAll('[data-translate]').forEach(el => {
